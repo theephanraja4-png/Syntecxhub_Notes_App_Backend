@@ -1,0 +1,25 @@
+{
+  "info": {
+    "name": "Syntecxhub Notes App Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "noteId", "value": "" }
+  ],
+  "item": [
+    { "name": "Health", "request": { "method": "GET", "url": "{{baseUrl}}/api/health" } },
+    { "name": "Register", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"name\":\"Ada Lovelace\",\"email\":\"ada@example.com\",\"password\":\"password123\"}" }, "url": "{{baseUrl}}/api/auth/register" } },
+    { "name": "Login", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"email\":\"ada@example.com\",\"password\":\"password123\"}" }, "url": "{{baseUrl}}/api/auth/login" } },
+    { "name": "Current User", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/auth/me" } },
+    { "name": "My Notes", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/users/me/notes" } },
+    { "name": "Create Note", "request": { "method": "POST", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"title\":\"First note\",\"content\":\"Private content\"}" }, "url": "{{baseUrl}}/api/notes" } },
+    { "name": "List Notes", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/notes?archived=false" } },
+    { "name": "Get Note", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/notes/{{noteId}}" } },
+    { "name": "Update Note", "request": { "method": "PUT", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"title\":\"Updated title\"}" }, "url": "{{baseUrl}}/api/notes/{{noteId}}" } },
+    { "name": "Archive Note", "request": { "method": "PATCH", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/notes/{{noteId}}/archive" } },
+    { "name": "Restore Note", "request": { "method": "PATCH", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/notes/{{noteId}}/restore" } },
+    { "name": "Delete Note", "request": { "method": "DELETE", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/api/notes/{{noteId}}" } }
+  ]
+}
